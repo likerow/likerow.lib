@@ -56,7 +56,7 @@ class Mail {
     public function notificarError($asunto, $mensaje, $email = null, $enviarEmail = false) {
         $this->serviceManager->get('Likerow\Logger')->err($mensaje);
         if ($enviarEmail) {
-            $config = $this->_getConfig("bongo_server");
+            $config = $this->_getConfig("likerow_server");
             if (!empty($config['email_development'])) {
                 $emailDeveloper = $config['email_development'][0];
                 unset($config['email_development'][0]);
@@ -90,7 +90,7 @@ class Mail {
      */
     public function notificarException($asunto, \Exception $e, $email = null, $enviarEmail = false) {
         $mensaje = $this->_prepararMensajedeError($e);
-        $this->serviceManager->get('Bongo\Logger')->err($mensaje);
+        $this->serviceManager->get('likerow\Logger')->err($mensaje);
         if ($enviarEmail) {
             $this->notificarError($asunto, $mensaje, $email, $enviarEmail);
         }

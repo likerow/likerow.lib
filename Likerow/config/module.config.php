@@ -4,7 +4,7 @@ return array(
     "email" => array(
         "smtp_sender_type" => "smtp",
         "smtp_name" => "localhost",
-        "smtp_host" => "smtp.1and1.com",
+        "smtp_host" => "gamail.com",
         "smtp_port" => "25",
         "smtp_connection_class" => "login",
         "smtp_username" => "logs@mayopi.com",

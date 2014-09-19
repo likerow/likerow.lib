@@ -8,7 +8,7 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Bongo;
+namespace Likerow;
 
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\Mvc\MvcEvent;
@@ -52,7 +52,7 @@ class Module implements AutoloaderProviderInterface {
         return array(
             'factories' => array(
                 'server' => function($sm) {
-                    $helper = new \Bongo\View\Helper\Server ;
+                    $helper = new \Likerow\View\Helper\Server ;
                     return $helper;
                 }
             )
