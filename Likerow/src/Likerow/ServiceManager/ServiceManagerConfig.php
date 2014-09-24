@@ -75,26 +75,37 @@ class ServiceManagerConfig extends Config {
         $config = $sm->get('Config');
         return new Server($config);
     },
-            'Likerow\Storage\DBStorage' => function (ServiceManager $sm) {
-        $dbAdapter = $sm->get('dbsession');
-        $conf = $sm->get('Config');
-        $config = null;
-        if (isset($conf['likerow_server']['session']) && isset($conf['likerow_server']['session']['sessionConfig'])) {
-            $config = $conf['likerow_server']['session']['sessionConfig'];
+            'Likerow\Pusher\Pusher' => function($sm) {
+        $config = $sm->get('Config');
+        if (empty($config['zfr_pusher'])) {
+            throw 'Falta la configuración de pusher.';
         }
-        $dbSession = new \Likerow\Storage\DBStorage($dbAdapter, $config);
-        return $dbSession;
+        return new \Likerow\Pusher\Pusher(
+                $config['zfr_pusher']['key']
+                , $config['zfr_pusher']['secret']
+                , $config['zfr_pusher']['app_id']
+                , true);
     },
+            /*       'Likerow\Storage\DBStorage' => function (ServiceManager $sm) {
+              $dbAdapter = $sm->get('dbsession');
+              $conf = $sm->get('Config');
+              $config = null;
+              if (isset($conf['likerow_server']['session']) && isset($conf['likerow_server']['session']['sessionConfig'])) {
+              $config = $conf['likerow_server']['session']['sessionConfig'];
+              }
+              $dbSession = new \Likerow\Storage\DBStorage($dbAdapter, $config);
+              return $dbSession;
+              }, */
             'Mail' => function (ServiceManager $sm) {
         return new \Likerow\Util\Mail($sm);
     },
             'Cache' => function (ServiceManager $sm) {
-        
+
         $config = $sm->get('Config');
         if (!isset($config['likerow_server']['cache'])) {
             throw new \Exception('Error en congfiguracion de cache');
         }
-        return \Zend\Cache\StorageFactory::factory($config['likerow_server']['cache']);        
+        return \Zend\Cache\StorageFactory::factory($config['likerow_server']['cache']);
     },
         );
 

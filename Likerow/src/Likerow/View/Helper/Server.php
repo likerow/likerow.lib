@@ -11,19 +11,19 @@ class Server extends AbstractHelper {
     }
 
     public function getStatic() {
-        return \Bongo\Util\Server::getStatic();
+        return \Likerow\Util\Server::getStatic();
     }
 
     public function getContent() {
-        return \Bongo\Util\Server::getContent();
+        return \Likerow\Util\Server::getContent();
     }
 
     public function getElement() {
-        return \Bongo\Util\Server::getElement();
+        return \Likerow\Util\Server::getElement();
     }
 
     public function getScriptVersion() {
-        return \Bongo\Util\Server::getScriptVersion();
+        return \Likerow\Util\Server::getScriptVersion();
     }
 
 }
